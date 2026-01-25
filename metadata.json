@@ -1,0 +1,5 @@
+{
+  "name": "NewsFlash Creator",
+  "description": "Generate professional breaking news social media creatives instantly using AI. Enter your headline and story, and let Gemini render a complete infographic.",
+  "requestFramePermissions": []
+}
