@@ -4,16 +4,32 @@ export interface StyleSettings {
   headlineColor: string;         // hex color
   descriptionColor: string;      // hex color
   bannerColor: string;           // hex color for "BREAKING NEWS"
+  headlineFont: string;          // font family for headline
+  descriptionFont: string;       // font family for description
+}
+
+export type VideoMode = 'single' | 'slideshow' | 'collage' | 'kenburns';
+export type TransitionType = 'fade' | 'slide' | 'crossfade' | 'none';
+export type CollageLayout = '2x2' | '3x3' | '2x3';
+
+export interface MultiImageSettings {
+  videoMode: VideoMode;
+  imageDuration: number;         // seconds per image (1-10)
+  transitionType: TransitionType;
+  collageLayout: CollageLayout;
 }
 
 export interface NewsData {
   headline: string;
   description: string;
-  uploadedMedia: string | null;   // base64 data URL
+  uploadedMedia: string | null;   // base64 data URL for single image/video
   mediaType: 'image' | 'video';
   videoTimestamp: number;         // seconds, for video frame extraction
   styleSettings: StyleSettings;
   outputMode: 'image' | 'video';  // 'image' = single frame, 'video' = full video with overlay
+  // Multi-image mode
+  multipleImages: string[];       // array of base64 data URLs
+  multiImageSettings: MultiImageSettings;
 }
 
 export interface GenerationState {
@@ -35,4 +51,28 @@ export const defaultStyleSettings: StyleSettings = {
   headlineColor: '#FFFFFF',
   descriptionColor: '#E5E5E5',
   bannerColor: '#D90000',
+  headlineFont: 'Oswald',
+  descriptionFont: 'Inter',
 };
+
+// Default multi-image settings
+export const defaultMultiImageSettings: MultiImageSettings = {
+  videoMode: 'single',
+  imageDuration: 3,
+  transitionType: 'fade',
+  collageLayout: '2x2',
+};
+
+// Available fonts for selection
+export const availableFonts = [
+  'Oswald',
+  'Inter',
+  'Roboto',
+  'Montserrat',
+  'Poppins',
+  'Playfair Display',
+  'Bebas Neue',
+  'Anton',
+  'Lato',
+  'Open Sans',
+];

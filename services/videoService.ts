@@ -109,7 +109,7 @@ function drawNewsOverlay(
 
     // Draw Headline
     ctx.fillStyle = styles.headlineColor;
-    ctx.font = `bold ${styles.headlineFontSize}px Oswald`;
+    ctx.font = `bold ${styles.headlineFontSize}px ${styles.headlineFont}`;
     ctx.textBaseline = "top";
     ctx.shadowColor = "rgba(0,0,0,0.5)";
     ctx.shadowBlur = 10;
@@ -130,7 +130,7 @@ function drawNewsOverlay(
 
     // Description
     ctx.fillStyle = styles.descriptionColor;
-    ctx.font = `${styles.descriptionFontSize}px Inter`;
+    ctx.font = `${styles.descriptionFontSize}px ${styles.descriptionFont}`;
     const bodyLineHeight = styles.descriptionFontSize + 15;
 
     wrapText(ctx, description, contentStartX, currentY, maxContentWidth, bodyLineHeight);

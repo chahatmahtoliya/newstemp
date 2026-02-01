@@ -1,6 +1,6 @@
 import React from 'react';
 import { Sliders, Palette } from 'lucide-react';
-import { StyleSettings } from '../types';
+import { StyleSettings, availableFonts } from '../types';
 
 interface StyleControlsProps {
     settings: StyleSettings;
@@ -54,6 +54,30 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ label, value, onChange }) => 
     </div>
 );
 
+interface FontSelectProps {
+    label: string;
+    value: string;
+    onChange: (value: string) => void;
+}
+
+const FontSelect: React.FC<FontSelectProps> = ({ label, value, onChange }) => (
+    <div className="flex items-center justify-between mb-2">
+        <span className="text-xs text-gray-400 uppercase tracking-wider">{label}</span>
+        <select
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            style={{ fontFamily: value }}
+            className="bg-gray-700 border border-gray-600 rounded px-2 py-1 text-sm text-white cursor-pointer focus:outline-none focus:border-news-red"
+        >
+            {availableFonts.map((font) => (
+                <option key={font} value={font} style={{ fontFamily: font }}>
+                    {font}
+                </option>
+            ))}
+        </select>
+    </div>
+);
+
 const StyleControls: React.FC<StyleControlsProps> = ({ settings, onChange }) => {
     const [isExpanded, setIsExpanded] = React.useState(true);
 
@@ -78,6 +102,23 @@ const StyleControls: React.FC<StyleControlsProps> = ({ settings, onChange }) => 
             {/* Content */}
             {isExpanded && (
                 <div className="p-4 pt-0 border-t border-gray-800">
+                    {/* Font Families */}
+                    <div className="mb-4">
+                        <h4 className="text-xs font-bold text-gray-300 uppercase mb-3 flex items-center">
+                            <span className="mr-2">🔤</span> Font Families
+                        </h4>
+                        <FontSelect
+                            label="Headline"
+                            value={settings.headlineFont}
+                            onChange={(v) => updateSetting('headlineFont', v)}
+                        />
+                        <FontSelect
+                            label="Description"
+                            value={settings.descriptionFont}
+                            onChange={(v) => updateSetting('descriptionFont', v)}
+                        />
+                    </div>
+
                     {/* Font Sizes */}
                     <div className="mb-4">
                         <h4 className="text-xs font-bold text-gray-300 uppercase mb-3 flex items-center">

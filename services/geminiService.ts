@@ -95,6 +95,8 @@ export const generateNewsCreative = async (
     headlineColor: '#FFFFFF',
     descriptionColor: '#E5E5E5',
     bannerColor: '#D90000',
+    headlineFont: 'Oswald',
+    descriptionFont: 'Inter',
   };
 
   // Ensure fonts are loaded before drawing so metrics are accurate
@@ -175,7 +177,7 @@ export const generateNewsCreative = async (
 
       // Draw Headline with dynamic styling
       ctx.fillStyle = styles.headlineColor;
-      ctx.font = `bold ${styles.headlineFontSize}px Oswald`;
+      ctx.font = `bold ${styles.headlineFontSize}px ${styles.headlineFont}`;
       ctx.textBaseline = "top";
       ctx.shadowColor = "rgba(0,0,0,0.5)";
       ctx.shadowBlur = 10;
@@ -196,7 +198,7 @@ export const generateNewsCreative = async (
 
       // 6. Description with dynamic styling
       ctx.fillStyle = styles.descriptionColor;
-      ctx.font = `${styles.descriptionFontSize}px Inter`;
+      ctx.font = `${styles.descriptionFontSize}px ${styles.descriptionFont}`;
       const bodyLineHeight = styles.descriptionFontSize + 15;
 
       wrapText(ctx, description, contentStartX, currentY, maxContentWidth, bodyLineHeight);
